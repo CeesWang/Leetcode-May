@@ -18,3 +18,21 @@ public class Solution extends VersionControl {
         return n;
     }
 }  // beats 11.26% of java submissions
+
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        // binary search
+        int low = 1;
+        int high = n;
+        while (low <= high) {
+            int mid = low + (high - low) / 2; 
+            if (isBadVersion(mid)) {
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;   
+            }            
+        }
+        return low;
+    }
+}   // beats 98.71% of java submissions
