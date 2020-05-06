@@ -15,4 +15,4 @@ class Solution {
         }
         return -1;
     }
-}
+} //beats 94.56% of java submissions

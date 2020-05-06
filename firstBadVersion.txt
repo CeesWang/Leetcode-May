@@ -17,4 +17,4 @@ public class Solution extends VersionControl {
         }
         return n;
     }
-}  
+}  // beats 11.26% of java submissions
