@@ -1,0 +1,13 @@
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+        Set<Character> uniqStones = new HashSet<>();
+        int ans = 0;
+        for (char c : J.toCharArray()) {
+            uniqStones.add(c);
+        }
+        for (char c : S.toCharArray()) {
+            if (uniqStones.contains(c)) ans++;
+        }
+        return ans;
+     }
+} // beats 80.93 java submissions
