@@ -1,0 +1,27 @@
+class Solution {
+    public boolean isCousins(TreeNode root, int x, int y) {
+        TreeNode rootNode = root;
+        int[] arr1 = new int [2];
+        int[] arr2 = new int [2];
+        getDepthAndParent(arr1, arr2, root, x, y, 0, root);
+        return (arr1[0] == arr2[0] && arr1[1] != arr2[1]);        
+    }
+    public void getDepthAndParent(int [] arr1, int [] arr2, TreeNode node, int x, int y, int depth, TreeNode parent) {
+        if (node != null) { 
+            if (node.val == x){
+                arr1[0] = depth;
+                arr1[1] = parent.val;                
+            }
+            else if (node.val == y) {
+                arr2[0] = depth;
+                arr2[1] = parent.val;    
+            }
+        }
+        if (node.left != null) {
+            getDepthAndParent(arr1, arr2, node.left, x, y, depth+1, node); 
+        }
+        if (node.right != null) {
+            getDepthAndParent(arr1, arr2, node.right, x, y, depth+1, node);
+        }
+    }
+} // beats 100% of java submissions
