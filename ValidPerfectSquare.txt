@@ -1,0 +1,16 @@
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        int lastDigit = num % 10;
+        if (lastDigit == 2 || lastDigit == 3 || lastDigit == 7 || lastDigit == 8) {
+            return false;
+        }
+        int oddOrEven = (num % 2 == 0 ? 2 : 1);
+        for (int i = oddOrEven; i <=num; i+=2) {
+            int square = i * i;
+            if (square == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+} // beats 100% of java submissions;
