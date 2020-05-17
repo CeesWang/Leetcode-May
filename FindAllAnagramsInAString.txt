@@ -1,0 +1,22 @@
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> ans = new ArrayList<>();
+        int [] anagramArr = new int [26][2];
+        for (char c : p.toCharArray()) {
+            anagramArr[c - 'a'][0]++;
+            anagramArr[c - 'a'][1]++;
+        }
+        int length = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            char c = s.charAt(i);
+            if (anagramArr[c- 'a'][0] > 0) {    // the letter is in the anagram
+                length++;
+                if (length == p.length()) {
+                    ans.add(i);
+                }
+            }
+            
+        }
+        return ans;
+    }
+} // attempting
