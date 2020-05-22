@@ -32,3 +32,19 @@ class Solution {
         }                
     }
 }	// beats 5.69 % of java submissions;
+
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<Integer> list = new ArrayList<>();
+        traverseTree(root, list);
+        return list.get(k-1);
+    }
+    
+    public void traverseTree(TreeNode root, ArrayList<Integer> list) {
+        if (root != null) {
+            traverseTree(root.left, list);
+            list.add(root.val);            
+            traverseTree(root.right, list);
+        }
+    }
+} // beats 37.81% of java submissions

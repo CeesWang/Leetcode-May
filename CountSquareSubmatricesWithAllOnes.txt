@@ -1,0 +1,21 @@
+class Solution {
+    public int countSquares(int[][] matrix) {
+        int ans = 0;
+        
+        for (int row = 0; row < matrix.length; ++row) {
+            for (int col = 0; col < matrix[0].length; ++col) {
+                if (matrix[row][col] == 1) {
+                    if (row == 0 || col == 0) {
+                        ans += matrix[row][col];
+                    }
+                    else {
+                        int topRow = Math.min(matrix[row-1][col-1], matrix[row-1][col]);        // top row
+                        matrix[row][col] += Math.min(matrix[row][col-1], topRow);               // bot row  
+                        ans += matrix[row][col];
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+}   // beats 94.86% of java submissions
