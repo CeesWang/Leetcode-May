@@ -1,0 +1,27 @@
+class Solution {
+    public String frequencySort(String s) {
+        PriorityQueue<Map.Entry<Character, Integer>> heap = new PriorityQueue<>((a,b) -> {
+            return b.getValue() - a.getValue();
+        });
+        Map<Character, Integer> freqMap = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+        
+        for (char c : s.toCharArray()) {    // get frequency of characters
+            freqMap.put(c, freqMap.getOrDefault(c, 0) + 1);                
+        }
+        
+        for (Map.Entry<Character, Integer> entry : freqMap.entrySet()) {    // get frequency of characters
+            heap.add(entry);
+        }
+        while (heap.size() > 0) {
+            Map.Entry<Character, Integer> entry = heap.poll();
+            int freq = entry.getValue();
+            Character key = entry.getKey();
+            for (int i = 0; i < freq; ++i) {
+                sb.append(key);
+            }
+        }
+        
+        return sb.toString();
+    }
+}	// beats 14.09% of java submissions

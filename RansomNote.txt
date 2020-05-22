@@ -12,4 +12,4 @@ class Solution {
         }
         return true;
     }
-} // beats 97.83% of java submissions
+} // beats 97.84% of java submissions
