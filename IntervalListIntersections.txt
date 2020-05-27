@@ -1,0 +1,73 @@
+class Solution {
+    public int[][] intervalIntersection(int[][] A, int[][] B) {
+        ArrayList<int []> intervalList = new ArrayList<>();
+        int indexA = 0;
+        int indexB = 0;
+        while (indexA < A.length && indexB < B.length) {
+            int beginA = A[indexA][0];
+            int endA = A[indexA][1];
+            int beginB = B[indexB][0];
+            int endB = B[indexB][1];
+            if (endA == beginB) {
+                int [] interval = {endA, beginB};
+                intervalList.add(interval);    
+                indexA++;
+            }
+            else if (beginA == endB) {
+                int [] interval = {beginA, endB};
+                intervalList.add(interval);    
+                indexB++;
+            }
+            else if (endA > beginB && endB > endA) {
+                if (beginA > beginB) {
+                    int [] interval = {beginA, endA};
+                    intervalList.add(interval);                    
+                }
+                else {
+                    int [] interval = {beginB, endA};
+                    intervalList.add(interval);
+                }                               
+                indexA++;
+            }
+            else if (endB > beginA && endA > endB) {
+                if (beginB > beginA) {
+                    int [] interval = {beginB, endB};
+                    intervalList.add(interval);
+                }
+                else {
+                    int [] interval = {beginA, endB};
+                    intervalList.add(interval);
+                }
+                indexB++;
+            }
+            else if (endB == endA) {
+                int [] interval = {Math.max(beginA,beginB), endB};
+                intervalList.add(interval);
+                indexA++;
+                indexB++;                
+            }
+            else if (beginA < beginB && endA < beginB) {
+                indexA++;
+            }
+            else if (beginB < beginA && endB < beginA) {
+                indexB++;
+            }
+            else if (endB < beginA) {
+                indexB++;
+            }
+            else if (endA > beginB) {
+                indexA++;
+            }
+            else {
+                indexA++;
+                indexB++;                
+            }
+
+        }
+        int [][] ans = new int [intervalList.size()][2];
+        for (int i = 0; i < ans.length; ++i) {
+            ans[i] = intervalList.get(i);
+        }
+        return ans;
+    }
+}   // beats 78.13 % of java submissions
